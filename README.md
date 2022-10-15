@@ -4,7 +4,7 @@
 -
 
 ```csharp
-CheckList<string> list = new CheckList<string>();
+CheckList<CheckList.CheckListItem> list = new CheckList<CheckList.CheckListItem>();
 
 // Add some items to the Grocery list.
 list.Add("Eggs", false);
