@@ -4,9 +4,9 @@ using System.Collections;
 
 namespace CheckList
 {
-	public class CheckList<CheckListItem> : IEnumerable<CheckListItem>
+	public partial class CheckList<CheckListItem> : IEnumerable<CheckListItem>
 	{
-		protected internal static CheckListItem[] Data;
+		private CheckListItem[] Data;
 
 		/// <summary>
 		/// The number of elements in the list.
@@ -85,5 +85,12 @@ namespace CheckList
 				return Data[index];
 			}
 		}
+
+		/// <summary>
+		/// Gets an item by its Value.
+		/// </summary>
+		/// <param name="value">The value of the item to retrive.</param>
+		/// <returns>CheckListItem</returns>
+		//public CheckList.CheckListItem this[string value] { }
 	}
 }

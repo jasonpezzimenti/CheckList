@@ -6,49 +6,52 @@ using System.Threading.Tasks;
 
 namespace CheckList
 {
-	public class CheckListItem
+	public partial class CheckList
 	{
-		/// <summary>
-		/// The value of this CheckListItem.
-		/// </summary>
-		public dynamic Value { get; set; }
-
-		/// <summary>
-		/// The Checked state of this CheckListItem.
-		/// </summary>
-		public bool Checked { get; set; }
-
-		/// <summary>
-		/// Checks the CheckListItem.
-		/// </summary>
-		public void Check()
+		public partial class CheckListItem
 		{
-			Checked = true;
-		}
+			/// <summary>
+			/// The value of this CheckListItem.
+			/// </summary>
+			public dynamic Value { get; set; }
 
-		/// <summary>
-		/// Unchecks the CkeckListItem.
-		/// </summary>
-		public void Uncheck()
-		{
-			Checked = false;
-		}
+			/// <summary>
+			/// The Checked state of this CheckListItem.
+			/// </summary>
+			public bool Checked { get; set; }
 
-		/// <summary>
-		/// Changes this CheckListItem to another.
-		/// </summary>
-		/// <param name="item">The item to change this CheckListItem to.</param>
-		/// <exception cref="NullReferenceException"></exception>
-		public void Change(CheckListItem item)
-		{
-			if (item != null)
+			/// <summary>
+			/// Checks the CheckListItem.
+			/// </summary>
+			public void Check()
 			{
-				this.Value = item.Value;
-				this.Checked = item.Checked;
+				Checked = true;
 			}
-			else
+
+			/// <summary>
+			/// Unchecks the CkeckListItem.
+			/// </summary>
+			public void Uncheck()
 			{
-				throw new NullReferenceException();
+				Checked = false;
+			}
+
+			/// <summary>
+			/// Changes this CheckListItem to another.
+			/// </summary>
+			/// <param name="item">The item to change this CheckListItem to.</param>
+			/// <exception cref="NullReferenceException"></exception>
+			public void Change(CheckListItem item)
+			{
+				if (item != null)
+				{
+					this.Value = item.Value;
+					this.Checked = item.Checked;
+				}
+				else
+				{
+					throw new NullReferenceException();
+				}
 			}
 		}
 	}
