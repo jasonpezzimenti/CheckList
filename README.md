@@ -21,7 +21,7 @@ list["Eggs"].Check();
 list[0].Uncheck();
 
 // Enumerate the list outputting each item.
-foreach(string item in list)
+foreach(CheckList.CheckListItem item in list)
 {
     Console.WriteLine(item.Value + " " + item.Checked);
 }
