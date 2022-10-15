@@ -76,5 +76,14 @@ namespace CheckList
 				return Data[index];
 			}
 		}
+
+		public CheckListItem this[CheckListItem item]
+		{
+			get
+			{
+				int index = Array.IndexOf(Data, item);
+				return Data[index];
+			}
+		}
 	}
 }
