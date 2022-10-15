@@ -4,9 +4,9 @@ using System.Collections;
 
 namespace CheckList
 {
-	public partial class CheckList<CheckListItem> : IEnumerable<CheckListItem>
+	public partial class CheckList<CheckListItem> : IEnumerable<CheckList.CheckListItem>
 	{
-		private CheckListItem[] Data;
+		private CheckList.CheckListItem[] Data;
 
 		/// <summary>
 		/// The number of elements in the list.
@@ -15,12 +15,12 @@ namespace CheckList
 
 		public CheckList(int capacity = 0)
 		{
-			Data = new CheckListItem[capacity];
+			Data = new CheckList.CheckListItem[capacity];
 		}
 
 		private void Resize()
 		{
-			CheckListItem[] array = new CheckListItem[Count + 1];
+			CheckList.CheckListItem[] array = new CheckList.CheckListItem[Count + 1];
 
 			for (int index = 0; index < Data.Length; index++)
 			{
@@ -34,7 +34,7 @@ namespace CheckList
 		/// Adds an item to the end of the list.
 		/// </summary>
 		/// <param name="item"></param>
-		public void Add(CheckListItem item)
+		public void Add(CheckList.CheckListItem item)
 		{
 			Resize();
 
@@ -45,10 +45,10 @@ namespace CheckList
 		/// Removed the item from the list.
 		/// </summary>
 		/// <param name="item"></param>
-		public void Remove(CheckListItem item)
+		public void Remove(CheckList.CheckListItem item)
 		{
 			int index = Array.IndexOf(Data, item);
-			Data = Data.Where<CheckListItem>((value, i) => i != index).ToArray();
+			Data = Data.Where<CheckList.CheckListItem>((value, i) => i != index).ToArray();
 		}
 
 		//public CheckListItem FindBy(string value)
@@ -66,7 +66,7 @@ namespace CheckList
 		//	}
 		//}
 
-		public IEnumerator<CheckListItem> GetEnumerator()
+		public IEnumerator<CheckList.CheckListItem> GetEnumerator()
 		{
 			for (int index = 0; index < Count; index++)
 			{
@@ -84,7 +84,7 @@ namespace CheckList
 		/// </summary>
 		/// <param name="index"></param>
 		/// <returns></returns>
-		public CheckListItem this[int index]
+		public CheckList.CheckListItem this[int index]
 		{
 			get
 			{
@@ -92,7 +92,7 @@ namespace CheckList
 			}
 		}
 
-		public CheckListItem this[CheckListItem item]
+		public CheckList.CheckListItem this[CheckList.CheckListItem item]
 		{
 			get
 			{
@@ -121,6 +121,41 @@ namespace CheckList
 				}
 
 				return item;
+			}
+		}
+
+		protected internal CheckList.CheckListItem[] ResizeArray(CheckList.CheckListItem[] array)
+		{
+			if(array != null)
+			{
+				CheckList.CheckListItem[] newArray = new CheckList.CheckListItem[array.Length];
+
+				for(int index = 0; index < array.Length; index++)
+				{
+					newArray[index] = array[index];
+				}
+
+				return newArray;
+			}
+			else
+			{
+				return array;
+			}
+		}
+
+		public CheckList.CheckListItem[] this[bool isChecked]
+		{
+			get
+			{
+				CheckList.CheckListItem[] items = new CheckList.CheckListItem[0];
+
+				foreach(CheckList.CheckListItem item in Data)
+				{
+					ResizeArray(items);
+					items[Count - 1] = item;
+				}
+
+				return items;
 			}
 		}
 	}
