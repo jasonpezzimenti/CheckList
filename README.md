@@ -31,4 +31,11 @@ if(list["Bread"].Checked)
 {
     // TODO: Something.
 }
+
+// Change a CheckListItem.
+list["Eggs"].Change(new CheckListItem()
+{
+	Value = "Pizza Slice",
+	Checked = false
+});
 ```
