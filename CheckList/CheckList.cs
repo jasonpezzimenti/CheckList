@@ -51,6 +51,21 @@ namespace CheckList
 			Data = Data.Where<CheckListItem>((value, i) => i != index).ToArray();
 		}
 
+		//public CheckListItem FindBy(string value)
+		//{
+		//	foreach(dynamic item in Data)
+		//	{
+		//		if(item.Value == value)
+		//		{
+		//			return item;
+		//		}
+		//		else
+		//		{
+		//			return null;
+		//		}
+		//	}
+		//}
+
 		public IEnumerator<CheckListItem> GetEnumerator()
 		{
 			for (int index = 0; index < Count; index++)
@@ -91,17 +106,22 @@ namespace CheckList
 		/// </summary>
 		/// <param name="value">The value of the item to retrieve.</param>
 		/// <returns>CheckListItem</returns>
-		//public CheckListItem this[string value]
-		//{
-		//	get
-		//	{
-		//		CheckListItem[] items = Data.ToArray<CheckListItem>();
+		public CheckList.CheckListItem this[string value]
+		{
+			get
+			{
+				CheckList.CheckListItem item = new CheckList.CheckListItem();
 
-		//		foreach(var item in items)
-		//		{
+				foreach (dynamic existingItem in Data)
+				{
+					if (existingItem.Value == value)
+					{
+						item = existingItem;
+					}
+				}
 
-		//		}
-		//	}
-		//}
+				return item;
+			}
+		}
 	}
 }
