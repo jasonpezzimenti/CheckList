@@ -6,51 +6,63 @@ using System.Threading.Tasks;
 
 namespace CheckList
 {
-	public partial class CheckList
+	public partial class CheckListItem
 	{
-		public partial class CheckListItem
+		/// <summary>
+		/// The value of this CheckListItem.
+		/// </summary>
+		public dynamic Value { get; set; }
+
+		/// <summary>
+		/// The Checked state of this CheckListItem.
+		/// </summary>
+		public bool Checked { get; set; }
+
+		/// <summary>
+		/// Checks the CheckListItem.
+		/// </summary>
+		public void Check()
 		{
-			/// <summary>
-			/// The value of this CheckListItem.
-			/// </summary>
-			public dynamic Value { get; set; }
+			Checked = true;
+		}
 
-			/// <summary>
-			/// The Checked state of this CheckListItem.
-			/// </summary>
-			public bool Checked { get; set; }
+		/// <summary>
+		/// Unchecks the CkeckListItem.
+		/// </summary>
+		public void Uncheck()
+		{
+			Checked = false;
+		}
 
-			/// <summary>
-			/// Checks the CheckListItem.
-			/// </summary>
-			public void Check()
+		/// <summary>
+		/// Changes this CheckListItem to another.
+		/// </summary>
+		/// <param name="item">The item to change this CheckListItem to.</param>
+		/// <exception cref="NullReferenceException"></exception>
+		public void Change(CheckListItem item)
+		{
+			if (item != null)
 			{
-				Checked = true;
+				this.Value = item.Value;
+				this.Checked = item.Checked;
 			}
-
-			/// <summary>
-			/// Unchecks the CkeckListItem.
-			/// </summary>
-			public void Uncheck()
+			else
 			{
-				Checked = false;
+				throw new NullReferenceException();
 			}
+		}
 
-			/// <summary>
-			/// Changes this CheckListItem to another.
-			/// </summary>
-			/// <param name="item">The item to change this CheckListItem to.</param>
-			/// <exception cref="NullReferenceException"></exception>
-			public void Change(CheckListItem item)
+		public CheckListItem this[string value]
+		{
+			get
 			{
-				if (item != null)
+				if(this.Value == Value)
 				{
-					this.Value = item.Value;
-					this.Checked = item.Checked;
+					return this;
 				}
 				else
 				{
-					throw new NullReferenceException();
+					return null;
 				}
 			}
 		}

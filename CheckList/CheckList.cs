@@ -89,8 +89,19 @@ namespace CheckList
 		/// <summary>
 		/// Gets an item by its Value.
 		/// </summary>
-		/// <param name="value">The value of the item to retrive.</param>
+		/// <param name="value">The value of the item to retrieve.</param>
 		/// <returns>CheckListItem</returns>
-		//public CheckList.CheckListItem this[string value] { }
+		//public CheckListItem this[string value]
+		//{
+		//	get
+		//	{
+		//		CheckListItem[] items = Data.ToArray<CheckListItem>();
+
+		//		foreach(var item in items)
+		//		{
+
+		//		}
+		//	}
+		//}
 	}
 }
