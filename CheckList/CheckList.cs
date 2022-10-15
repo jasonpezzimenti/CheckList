@@ -117,6 +117,7 @@ namespace CheckList
 					if (existingItem.Value == value)
 					{
 						item = existingItem;
+						break;
 					}
 				}
 
@@ -147,12 +148,15 @@ namespace CheckList
 		{
 			get
 			{
-				CheckList.CheckListItem[] items = new CheckList.CheckListItem[0];
+				CheckList.CheckListItem[] items = null;
 
-				foreach(CheckList.CheckListItem item in Data)
+				if (isChecked)
 				{
-					ResizeArray(items);
-					items[Count - 1] = item;
+					items = Data.Where<CheckList.CheckListItem>(item => item.Checked).ToArray<CheckList.CheckListItem>().ToArray();
+				}
+				else
+				{
+					items = Data.Where<CheckList.CheckListItem>(item => !item.Checked).ToArray<CheckList.CheckListItem>().ToArray();
 				}
 
 				return items;
