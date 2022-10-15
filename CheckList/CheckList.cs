@@ -144,6 +144,11 @@ namespace CheckList
 			}
 		}
 
+		/// <summary>
+		/// Gets all items matching true or false.
+		/// </summary>
+		/// <param name="isChecked"></param>
+		/// <returns>Items matching either true or false.</returns>
 		public CheckList.CheckListItem[] this[bool isChecked]
 		{
 			get
