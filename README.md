@@ -4,7 +4,7 @@
 -
 
 ```csharp
-CheckList<string> list = new CheckList<string>();
+CheckList<CheckList.CheckListItem> list = new CheckList<CheckList.CheckListItem>();
 
 // Add some items to the Grocery list.
 list.Add("Eggs", false);
@@ -21,7 +21,7 @@ list["Eggs"].Check();
 list[0].Uncheck();
 
 // Enumerate the list outputting each item.
-foreach(string item in list)
+foreach(CheckList.CheckListItem item in list)
 {
     Console.WriteLine(item.Value + " " + item.Checked);
 }
@@ -31,4 +31,11 @@ if(list["Bread"].Checked)
 {
     // TODO: Something.
 }
+
+// Change a CheckListItem.
+list["Eggs"].Change(new CheckListItem()
+{
+	Value = "Pizza Slice",
+	Checked = false
+});
 ```
