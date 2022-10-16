@@ -104,6 +104,10 @@ namespace CheckList
 						item = existingItem;
 						break;
 					}
+					else
+					{
+						throw new ItemNotFoundException("The item provided does not exist in the list.");
+					}
 				}
 
 				return item;
@@ -112,11 +116,11 @@ namespace CheckList
 
 		protected internal CheckList.CheckListItem[] ResizeArray(CheckList.CheckListItem[] array)
 		{
-			if(array != null)
+			if (array != null)
 			{
 				CheckList.CheckListItem[] newArray = new CheckList.CheckListItem[array.Length];
 
-				for(int index = 0; index < array.Length; index++)
+				for (int index = 0; index < array.Length; index++)
 				{
 					newArray[index] = array[index];
 				}
@@ -151,6 +155,25 @@ namespace CheckList
 
 				return items;
 			}
+		}
+
+		public bool Compare(CheckList.CheckListItem firstItem, CheckList.CheckListItem secondItem)
+		{
+			bool isMatch = false;
+
+			if (Data.Contains(firstItem) && Data.Contains(secondItem))
+			{
+				if (firstItem.Value == secondItem.Value && firstItem.Checked == secondItem.Checked)
+				{
+					isMatch = true;
+				}
+				else
+				{
+					isMatch = false;
+				}
+			}
+
+			return isMatch;
 		}
 	}
 }
