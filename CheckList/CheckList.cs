@@ -38,7 +38,10 @@ namespace CheckList
 		{
 			Resize();
 
-			Data[Count - 1] = item;
+			if (!Data.Contains(item))
+			{
+				Data[Count - 1] = item;
+			}
 		}
 
 		/// <summary>
@@ -159,7 +162,7 @@ namespace CheckList
 
 			if (Data.Contains(firstItem) && Data.Contains(secondItem))
 			{
-				if (firstItem.Value == secondItem.Value && firstItem.Checked == secondItem.Checked)
+				if (firstItem.Value == secondItem.Value && firstItem.Checked == secondItem.Checked && firstItem.Quantity == secondItem.Quantity)
 				{
 					isMatch = true;
 				}

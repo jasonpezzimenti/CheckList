@@ -18,6 +18,8 @@ namespace CheckList
 		/// </summary>
 		public bool Checked { get; set; }
 
+		public int Quantity { get; set; } = 1;
+
 		/// <summary>
 		/// Checks the CheckListItem.
 		/// </summary>
