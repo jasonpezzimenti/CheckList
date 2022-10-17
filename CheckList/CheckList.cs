@@ -18,7 +18,7 @@ namespace CheckList
 			Data = new CheckList.CheckListItem[capacity];
 		}
 
-		private void Resize()
+		protected internal void Resize()
 		{
 			CheckList.CheckListItem[] array = new CheckList.CheckListItem[Count + 1];
 
@@ -42,7 +42,7 @@ namespace CheckList
 		}
 
 		/// <summary>
-		/// Removed the item from the list.
+		/// Removes the item from the list.
 		/// </summary>
 		/// <param name="item"></param>
 		public void Remove(CheckList.CheckListItem item)
@@ -103,10 +103,6 @@ namespace CheckList
 					{
 						item = existingItem;
 						break;
-					}
-					else
-					{
-						throw new ItemNotFoundException("The item provided does not exist in the list.");
 					}
 				}
 
